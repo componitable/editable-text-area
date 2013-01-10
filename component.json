@@ -1,0 +1,15 @@
+{
+  "name": "editable-text-area",
+  "repo": "componitable/editable-text-area",
+  "description": "An inline editable text area",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "componitable/editable": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ]
+}
