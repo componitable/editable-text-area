@@ -22,7 +22,7 @@ function edit(element, options) {
     var value = element.textContent.trim();
     element.innerHTML = '';
     var edit = document.createElement('textarea');
-    edit.textContent = value;
+    edit.value = value;
     element.appendChild(edit);
     if (options.maintainSize === true) {
         var editDimensions = editable.transformDimensions(edit, dimensions);
@@ -37,13 +37,13 @@ function edit(element, options) {
         if (element.getAttribute('data-in-edit-mode') != 'true') return;
         element.setAttribute('data-in-edit-mode', 'false');
         emit('pre-end-edit', element);
-        element.innerHTML = edit.textContent.trim();
+        element.innerHTML = edit.value.trim();
         if (options.maintainSize === true) {
             element.style.width = oldStyle.width;
             element.style.height = oldStyle.height;
         }
-        if (value != edit.textContent.trim()) {
-            emit('update', element, edit.textContent.trim());
+        if (value != edit.value.trim()) {
+            emit('update', element, edit.value.trim());
         }
         emit('post-end-edit', element);
     });
