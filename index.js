@@ -1,11 +1,17 @@
 var emitter = require('emitter');
 var editable = require('editable');
 var toArray = require('to-element-array');
+var matches = require('matches-selector');
 
 module.exports = makeEditable;
 function makeEditable(elements, options) {
   options = options || {};
   editable.click(typeof elements === 'string' ? elements + ' *' : elements, function (element) {
+    if (typeof elements === 'string') {
+      while (!matches(element, elements) && element.parentNode && element != element.parentNode) {
+        element = element.parentNode;
+      }
+    }
     if (element.getAttribute('data-in-edit-mode') == 'true') return;
     element.setAttribute('data-in-edit-mode', 'true');
     edit(element, options);
@@ -16,7 +22,7 @@ function makeEditable(elements, options) {
     var els = toArray(elements);
     for (var i = 0; i < els.length; i++) {
       if (els[i].getElementsByTagName('input').length === 0 && !els[i].hasAttribute('data-real-text')) {
-        fixElement(els[i], els[i].textContent);
+        fixElement(els[i], els[i].innerHTML.replace(/<\/p>[\s ]*<p>/g, '\n\n').replace(/<\/?p>/g, ''));
       }
     }
   }
