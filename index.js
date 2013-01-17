@@ -5,7 +5,7 @@ var toArray = require('to-element-array');
 module.exports = makeEditable;
 function makeEditable(elements, options) {
   options = options || {};
-  editable.click(elements, function (element) {
+  editable.click(typeof elements === 'string' ? elements + ' *' : elements, function (element) {
     if (element.getAttribute('data-in-edit-mode') == 'true') return;
     element.setAttribute('data-in-edit-mode', 'true');
     edit(element, options);
