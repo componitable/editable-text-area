@@ -2,11 +2,12 @@
   "name": "editable-text-area",
   "repo": "componitable/editable-text-area",
   "description": "An inline editable text area",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [],
   "dependencies": {
     "componitable/editable": "*",
-    "component/emitter": "*"
+    "component/emitter": "*",
+    "ForbesLindesay/to-element-array": "*"
   },
   "development": {},
   "license": "MIT",
