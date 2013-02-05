@@ -6,7 +6,7 @@ var matches = require('matches-selector');
 module.exports = makeEditable;
 function makeEditable(elements, options) {
   options = options || {};
-  editable.click(typeof elements === 'string' ? elements + ' *' : elements, function (element) {
+  editable.click(typeof elements === 'string' ? (elements + ' *, ' + elements) : elements, function (element) {
     if (typeof elements === 'string') {
       while (!matches(element, elements) && element.parentNode && element != element.parentNode) {
         element = element.parentNode;
